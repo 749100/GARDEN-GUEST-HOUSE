@@ -1,0 +1,466 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Concierge Console | Garden Guest House</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background: #0d0d0d;
+        color: #fff;
+        min-height: 100vh;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 5%;
+        border-bottom: 1px solid rgba(197, 168, 128, 0.15);
+        background: #141414;
+      }
+      .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+      .logo span {
+        color: #c5a880;
+      }
+      .exit-btn {
+        color: #ff6b6b;
+        text-decoration: none;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .dashboard-wrapper {
+        max-width: 1400px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+      h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.2rem;
+        margin-bottom: 30px;
+        color: #fff;
+      }
+
+      /* Grid sections */
+      .panel-section {
+        background: #141414;
+        border: 1px solid rgba(197, 168, 128, 0.12);
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 40px;
+      }
+      .panel-section h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        color: #c5a880;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      /* Data Tables */
+      .table-wrapper {
+        overflow-x: auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.95rem;
+      }
+      th {
+        color: #c5a880;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        padding: 12px 15px;
+        border-bottom: 2px solid rgba(197, 168, 128, 0.15);
+      }
+      td {
+        padding: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        color: #dcdcdc;
+        vertical-align: middle;
+      }
+      tr:hover td {
+        background: rgba(197, 168, 128, 0.02);
+      }
+
+      .badge {
+        background: rgba(197, 168, 128, 0.1);
+        color: #c5a880;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: inline-block;
+      }
+
+      /* Status dynamic accents */
+      .status-available {
+        background: rgba(46, 204, 113, 0.15);
+        color: #2ecc71;
+      }
+      .status-occupied {
+        background: rgba(231, 76, 60, 0.15);
+        color: #e74c3c;
+      }
+      .status-cleaning {
+        background: rgba(241, 196, 15, 0.15);
+        color: #f1c40f;
+      }
+      .status-paid {
+        background: rgba(46, 196, 182, 0.15);
+        color: #2ec4b6;
+      }
+
+      .message-text {
+        max-width: 400px;
+        line-height: 1.5;
+        color: #a6a6a6;
+      }
+
+      /* Form controls inside tables */
+      .status-form {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .status-select {
+        background: #1f1f1f;
+        color: #fff;
+        border: 1px solid rgba(197, 168, 128, 0.25);
+        padding: 6px 10px;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 0.85rem;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .status-select:focus {
+        border-color: #c5a880;
+      }
+      .status-submit-btn {
+        background: #c5a880;
+        color: #0d0d0d;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .status-submit-btn:hover {
+        background: #b3956b;
+      }
+
+      .django-messages-container {
+        max-width: 1400px;
+        margin: 20px auto 0 auto;
+        padding: 0 20px;
+      }
+      .alert-msg {
+        padding: 15px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-align: center;
+      }
+      .alert-success {
+        background: rgba(46, 204, 113, 0.15);
+        color: #2ecc71;
+        border: 1px solid rgba(46, 204, 113, 0.3);
+      }
+      .alert-error {
+        background: rgba(231, 76, 60, 0.15);
+        color: #e74c3c;
+        border: 1px solid rgba(231, 76, 60, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="{% url 'home' %}" class="logo"
+        >GARDEN<span>HOUSE</span> Console</a
+      >
+      <a href="{% url 'home' %}" class="exit-btn"
+        ><i class="fas fa-sign-out-alt"></i> Return To Main Site</a
+      >
+    </header>
+
+    {% if messages %}
+    <div class="django-messages-container">
+      {% for message in messages %}
+      <div
+        class="alert-msg {% if message.tags == 'success' %}alert-success{% else %}alert-error{% endif %}"
+      >
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <main class="dashboard-wrapper">
+      <h1>Administrative Overview</h1>
+
+      <div class="panel-section">
+        <h2><i class="fas fa-bed"></i> Room Inventory Operations</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Accommodation Type</th>
+                <th>Base Pricing</th>
+                <th>Max Occupancy</th>
+                <th>Current Status</th>
+                <th>State Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for room in rooms %}
+              <tr>
+                <td><strong>{{ room.name }}</strong></td>
+                <td>KES {{ room.base_price }}</td>
+                <td>{{ room.max_adults }} Adults</td>
+                <td>
+                  <span
+                    class="badge {% if room.status == 'Available' %}status-available{% elif room.status == 'Occupied' %}status-occupied{% else %}status-cleaning{% endif %}"
+                  >
+                    {{ room.status|default:"Available" }}
+                  </span>
+                </td>
+                <td>
+                  <form
+                    action="{% url 'update_room_status' room.id %}"
+                    method="POST"
+                    class="status-form"
+                  >
+                    {% csrf_token %}
+                    <select name="status" class="status-select">
+                      <option
+                        value="Available"
+                        {%
+                        if
+                        room.status=""
+                        ="Available"
+                        %}selected{%
+                        endif
+                        %}
+                      >
+                        Set Available
+                      </option>
+                      <option
+                        value="Occupied"
+                        {%
+                        if
+                        room.status=""
+                        ="Occupied"
+                        %}selected{%
+                        endif
+                        %}
+                      >
+                        Set Occupied
+                      </option>
+                      <option
+                        value="Dirty/Cleaning"
+                        {%
+                        if
+                        room.status=""
+                        ="Dirty/Cleaning"
+                        %}selected{%
+                        endif
+                        %}
+                      >
+                        Set Cleaning
+                      </option>
+                    </select>
+                    <button type="submit" class="status-submit-btn">
+                      Update
+                    </button>
+                  </form>
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td
+                  colspan="5"
+                  style="text-align: center; color: #666; padding: 30px"
+                >
+                  No accommodation metrics pulled from the schema engine.
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <h2>
+          <i class="fas fa-receipt"></i> Live Reservations & M-Pesa Audits
+        </h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Lead Guest</th>
+                <th>M-Pesa Record</th>
+                <th>Duration (In / Out)</th>
+                <th>Total Cost</th>
+                <th>Payment State</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for booking in active_bookings %}
+              <tr>
+                <td><strong>{{ booking.guest_name }}</strong></td>
+                <td>
+                  <code style="color: #c5a880">{{ booking.mpesa_phone }}</code>
+                </td>
+                <td>
+                  {{ booking.check_in|date:"M d" }} — {{
+                  booking.check_out|date:"M d, Y" }}
+                </td>
+                <td style="font-weight: 600; color: #fff">
+                  KES {{ booking.total_cost }}
+                </td>
+                <td>
+                  <span
+                    class="badge {% if booking.is_paid %}status-paid{% else %}status-occupied{% endif %}"
+                  >
+                    {% if booking.is_paid %}Paid & Confirmed{% else %}STK
+                    Pending{% endif %}
+                  </span>
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td
+                  colspan="5"
+                  style="text-align: center; color: #666; padding: 30px"
+                >
+                  No reservation data logged in the transaction layer.
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <h2>
+          <i class="fas fa-envelope-open-text"></i> Live Guest Inquiries ({{
+          feedback_messages|length }})
+        </h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Guest Name</th>
+                <th>Email Address</th>
+                <th>Message Content</th>
+                <th>Received Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for msg in feedback_messages %}
+              <tr>
+                <td><strong>{{ msg.name }}</strong></td>
+                <td>
+                  <a href="mailto:{{ msg.email }}" style="color: #fff"
+                    >{{ msg.email }}</a
+                  >
+                </td>
+                <td><div class="message-text">{{ msg.message }}</div></td>
+                <td>
+                  <span class="badge"
+                    >{{ msg.created_at|date:"M d, Y H:i" }}</span
+                  >
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td
+                  colspan="4"
+                  style="text-align: center; color: #666; padding: 30px"
+                >
+                  No message entries found in your database.
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <h2>
+          <i class="fas fa-users"></i> Platform Members ({{ total_users|length
+          }})
+        </h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Username/Email</th>
+                <th>Date Joined</th>
+                <th>Privileges</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for profile in total_users %}
+              <tr>
+                <td>{{ profile.username }}</td>
+                <td>{{ profile.date_joined|date:"F d, Y" }}</td>
+                <td>
+                  {% if profile.is_staff %}
+                  <span
+                    class="badge"
+                    style="background: rgba(231, 76, 60, 0.1); color: #e74c3c"
+                    >Staff Admin</span
+                  >
+                  {% else %}
+                  <span class="badge">Standard Guest</span>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,207 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In | Garden Guest House</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* --- Authentication Layout Reset & Styles --- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background: radial-gradient(circle at center, #1a1a1a 0%, #0d0d0d 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+      }
+      .auth-card {
+        background: #141414;
+        border: 1px solid rgba(197, 168, 128, 0.15);
+        border-radius: 12px;
+        width: 100%;
+        max-width: 460px;
+        padding: 40px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      }
+      .auth-header {
+        text-align: center;
+        margin-bottom: 32px;
+      }
+      .auth-header h2 {
+        font-family: "Playfair Display", serif;
+        color: #fff;
+        font-size: 2.2rem;
+        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+      }
+      .auth-header p {
+        color: #a6a6a6;
+        font-size: 0.95rem;
+      }
+      .auth-form-group {
+        margin-bottom: 22px;
+      }
+      .auth-form-group label {
+        display: block;
+        color: #c5a880;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+      .auth-input-wrapper {
+        position: relative;
+      }
+      .auth-input-wrapper i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #555;
+        font-size: 1.1rem;
+        transition: color 0.3s ease;
+      }
+      .auth-input-wrapper input {
+        width: 100%;
+        background: #1f1f1f;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 6px;
+        padding: 14px 15px 14px 45px;
+        color: #fff;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+      }
+      .auth-input-wrapper input:focus {
+        outline: none;
+        border-color: #c5a880;
+        background: #252525;
+        box-shadow: 0 0 10px rgba(197, 168, 128, 0.12);
+      }
+      .auth-input-wrapper input:focus + i {
+        color: #c5a880;
+      }
+      .auth-submit-btn {
+        width: 100%;
+        background: #c5a880;
+        color: #0d0d0d;
+        border: none;
+        border-radius: 6px;
+        padding: 15px;
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+      }
+      .auth-submit-btn:hover {
+        background: #b3956b;
+        box-shadow: 0 5px 15px rgba(197, 168, 128, 0.25);
+      }
+      .auth-footer-text {
+        text-align: center;
+        margin-top: 25px;
+        color: #8c8c8c;
+        font-size: 0.9rem;
+      }
+      .auth-footer-text a {
+        color: #c5a880;
+        text-decoration: none;
+        font-weight: 600;
+        margin-left: 4px;
+        transition: color 0.2s ease;
+      }
+      .auth-footer-text a:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="auth-card">
+      <div class="auth-header">
+        <h2>Welcome Back</h2>
+        <p>Sign in to your premium guest portal</p>
+      </div>
+
+      <form id="loginForm" method="POST" action="{% url 'login' %}" novalidate>
+        {% csrf_token %}
+        <div class="auth-form-group">
+          <label for="email">Email Address</label>
+          <div class="auth-input-wrapper">
+            <input
+              type="email"
+              id="email"
+              name="username"
+              placeholder="name@example.com"
+              required
+            />
+            <i class="fa-solid fa-envelope"></i>
+          </div>
+        </div>
+
+        <div class="auth-form-group">
+          <label for="password">Password</label>
+          <div class="auth-input-wrapper">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="••••"
+              required
+              maxlength="4"
+              inputmode="numeric"
+            />
+            <i class="fa-solid fa-lock"></i>
+          </div>
+        </div>
+
+        <button type="submit" class="auth-submit-btn">Sign In</button>
+      </form>
+
+      <p class="auth-footer-text">
+        Don't have an account?
+        <a href="{% url 'register' %}">Sign Up Instead</a>
+      </p>
+    </main>
+
+    <script>
+      const passwordInput = document.getElementById("password");
+
+      passwordInput.addEventListener("input", (e) => {
+        let sanitized = e.target.value.replace(/\D/g, "");
+        if (sanitized.length > 4) {
+          sanitized = sanitized.substring(0, 4);
+        }
+        e.target.value = sanitized;
+      });
+
+      document.getElementById("loginForm").addEventListener("submit", (e) => {
+        if (passwordInput.value.length !== 4) {
+          e.preventDefault(); // Stop form from sending if invalid
+          alert("Password must be exactly 4 numbers.");
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,297 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | Garden Guest House</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'bookings/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'bookings/css/about.css' %}" />
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav>
+          <div class="drawer-close-trigger">
+            <i class="fas fa-times"></i>
+          </div>
+
+          <div class="drawer-search-container">
+            <h3>Search room</h3>
+            <div class="search-box-wrapper">
+              <input type="text" placeholder="Enter keyword..." />
+              <button type="submit" class="search-submit-btn">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+
+          <ul class="nav-links-list">
+            <li><a href="{% url 'home' %}">Home</a></li>
+
+            <li class="has-dropdown">
+              <div class="menu-link-wrapper">
+                <a href="#">Rooms</a>
+                <span class="dropdown-toggle-btn"></span>
+              </div>
+              <div class="nested-dropdown mega-menu-tray">
+                <div class="mega-column">
+                  <h4>Luxury Accommodation</h4>
+                  <ul>
+                    <li>
+                      <a href="{% url 'home' %}#accommodations"
+                        >Premium Cottages</a
+                      >
+                    </li>
+                    <li>
+                      <a href="{% url 'home' %}#accommodations"
+                        >Luxury Suites</a
+                      >
+                    </li>
+                    <li>
+                      <a href="{% url 'home' %}#accommodations"
+                        >Family Suites</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+
+            <li class="has-dropdown">
+              <div class="menu-link-wrapper">
+                <a href="#">Services</a>
+                <span class="dropdown-toggle-btn"></span>
+              </div>
+              <div class="nested-dropdown mega-menu-tray">
+                <div class="mega-column">
+                  <h4>Hospitality & Events</h4>
+                  <ul>
+                    <li><a href="#">Conference Rooms</a></li>
+                    <li><a href="#">Catering Services</a></li>
+                  </ul>
+                </div>
+                <div class="mega-column">
+                  <h4>Recreation</h4>
+                  <ul>
+                    <li><a href="#">Leisure Activities</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+
+          <div class="drawer-rich-content">
+            <div class="drawer-about-container">
+              <h3>About us</h3>
+              <p>
+                Garden Guest House is a great definition of hospitality,
+                offering modern elegant spaces, premium dining options, and
+                quiet garden landscapes.
+              </p>
+            </div>
+
+            <div class="drawer-pages-container">
+              <h3>Our pages</h3>
+              <ul>
+                <li><a href="{% url 'about' %}" class="active">About Us</a></li>
+                <li><a href="#">Our Gallery</a></li>
+                <li><a href="#">King Bed</a></li>
+                <li><a href="#">Duplex Restaurant</a></li>
+                <li><a href="#">Restaurant</a></li>
+                <li><a href="#">Places</a></li>
+                <li><a href="#">Our Offers</a></li>
+              </ul>
+            </div>
+
+            <div class="drawer-account-container">
+              <h3>Account</h3>
+              <ul>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+              </ul>
+            </div>
+
+            <div class="drawer-contact-container">
+              <h3>Contact us</h3>
+              <div class="drawer-social-row">
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-youtube"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-whatsapp"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="header-center">
+        <div class="brand-wrapper">
+          <div class="logo">GARDEN<span>HOUSE</span></div>
+          <div class="tagline">...the pride of paradise...</div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <a href="tel:+254714386594" class="contact-badge-link">
+          <div class="contact-icon-box">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div class="contact-details-text">
+            <span class="label">Phone Number</span>
+            <span class="value">+254 714 386594</span>
+          </div>
+        </a>
+        <a
+          href="mailto:reservations@gardenguesthouse.com"
+          class="contact-badge-link"
+        >
+          <div class="contact-icon-box">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-details-text">
+            <span class="label">Email Address</span>
+            <span class="value">reservations@gardenguesthouse.com</span>
+          </div>
+        </a>
+      </div>
+    </header>
+
+    <main class="about-page-wrapper">
+      <section class="about-hero-banner">
+        <div class="hero-inner-content">
+          <p class="hero-subtext">The Garden House Story</p>
+          <h1 class="hero-main-title">Crafting Sanctuary</h1>
+        </div>
+      </section>
+
+      <section class="about-premium-section">
+        <div class="about-premium-container">
+          <div class="about-narrative-block">
+            <p class="section-sub-caption">Discover Our Legacy</p>
+            <h2 class="section-main-title">
+              Refined Luxury In The Heart Of Nature
+            </h2>
+
+            <p class="about-body-text">
+              Garden Guest House stands as a sanctuary of sophistication,
+              blending timeless architecture with the raw beauty of our natural
+              surroundings. Founded on the principles of bespoke hospitality,
+              our mission has always been to provide an escape that transcends
+              ordinary lodging.
+            </p>
+
+            <p class="about-body-text">
+              Every detail—from the curated local choices in our lounges to the
+              custom-tailored guest services—is orchestrated to deliver an
+              unforgettable journey into tranquility and premium luxury.
+            </p>
+
+            <div class="about-metrics-grid">
+              <div class="metric-item">
+                <span class="metric-number" data-target="12">0</span>
+                <span class="metric-label">Years of Excellence</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-number" data-target="85">0</span>
+                <span class="metric-label">Luxury Rooms & Cottages</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-number" data-target="15">0</span>
+                <span class="metric-label">Hospitality Awards</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-visual-showcase">
+            <div class="main-image-frame animate-on-scroll slide-up">
+              <img
+                src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=800&auto=format&fit=crop"
+                alt="Garden House Premium Estate"
+                class="about-img"
+              />
+            </div>
+            <div class="accent-image-frame animate-on-scroll slide-up delay-1">
+              <img
+                src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=600&auto=format&fit=crop"
+                alt="Luxury Hospitality Experience"
+                class="about-img"
+              />
+            </div>
+            <div class="geometric-backdrop-accent"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-values-section">
+        <div class="values-container-wrapper">
+          <div class="values-header">
+            <p class="section-sub-caption">Our Guiding Pillars</p>
+            <h2 class="section-main-title">The Standard We Keep</h2>
+          </div>
+
+          <div class="values-flex-cards">
+            <div class="value-card-box">
+              <div class="card-icon">
+                <i class="fa-solid fa-bell-concierge"></i>
+              </div>
+              <h3>Bespoke Service</h3>
+              <p>
+                Anticipating every single touchpoint profile request with
+                individual curated precision execution.
+              </p>
+            </div>
+            <div class="value-card-box">
+              <div class="card-icon"><i class="fa-solid fa-spa"></i></div>
+              <h3>Holistic Wellness</h3>
+              <p>
+                Providing physical relaxation sanctuaries designed to disconnect
+                you from standard urban chaos lines.
+              </p>
+            </div>
+            <div class="value-card-box">
+              <div class="card-icon"><i class="fa-solid fa-leaf"></i></div>
+              <h3>Eco Integrity</h3>
+              <p>
+                Ensuring premium resource mechanics balance cleanly with local
+                community ecosystems.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="{% static 'bookings/js/script.js' %}"></script>
+    <script src="{% static 'bookings/js/about.js' %}"></script>
+  </body>
+</html>

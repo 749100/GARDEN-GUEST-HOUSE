@@ -1,0 +1,454 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Garden Guest House | Luxury Lodging & Resort</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'bookings/css/style.css' %}" />
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav>
+          <div class="drawer-close-trigger">
+            <i class="fas fa-times"></i>
+          </div>
+
+          <div class="drawer-search-container">
+            <h3>Search room</h3>
+            <div class="search-box-wrapper">
+              <input type="text" placeholder="Enter keyword..." />
+              <button type="submit" class="search-submit-btn">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+
+          <ul class="nav-links-list">
+            <li><a href="{% url 'home' %}" class="active">Home</a></li>
+
+            <li class="has-dropdown">
+              <div class="menu-link-wrapper">
+                <a href="#">Rooms</a>
+                <span class="dropdown-toggle-btn"></span>
+              </div>
+              <div class="nested-dropdown mega-menu-tray">
+                <div class="mega-column">
+                  <h4>Luxury Accommodation</h4>
+                  <ul>
+                    <li><a href="#accommodations">Premium Cottages</a></li>
+                    <li><a href="#accommodations">Luxury Suites</a></li>
+                    <li><a href="#accommodations">Family Suites</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+
+            <li class="has-dropdown">
+              <div class="menu-link-wrapper">
+                <a href="#">Services</a>
+                <span class="dropdown-toggle-btn"></span>
+              </div>
+              <div class="nested-dropdown mega-menu-tray">
+                <div class="mega-column">
+                  <h4>Hospitality & Events</h4>
+                  <ul>
+                    <li><a href="#">Conference Rooms</a></li>
+                    <li><a href="#">Catering Services</a></li>
+                  </ul>
+                </div>
+                <div class="mega-column">
+                  <h4>Recreation</h4>
+                  <ul>
+                    <li><a href="#">Leisure Activities</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+          </ul>
+
+          <div class="drawer-rich-content">
+            <div class="drawer-about-container">
+              <h3>About us</h3>
+              <p>
+                Garden Guest House is a great definition of hospitality,
+                offering modern elegant spaces, premium dining options, and
+                quiet garden landscapes.
+              </p>
+            </div>
+
+            <div class="drawer-pages-container">
+              <h3>Our pages</h3>
+              <ul>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="#">Our Gallery</a></li>
+                <li><a href="#">King Bed</a></li>
+                <li><a href="#">Duplex Restaurant</a></li>
+                <li><a href="#">Restaurant</a></li>
+                <li><a href="#">Places</a></li>
+                <li><a href="#">Our Offers</a></li>
+              </ul>
+            </div>
+
+            <div class="drawer-account-container">
+              <h3>Account</h3>
+              <ul>
+                {% if user.is_authenticated %}
+                <li
+                  style="color: #c5a880; font-size: 0.9rem; padding-bottom: 5px"
+                >
+                  Active: {{ user.email }}
+                </li>
+
+                {% if user.is_staff %}
+                <li style="margin-bottom: 5px">
+                  <a
+                    href="{% url 'admin_dashboard' %}"
+                    style="color: #c5a880; font-weight: 600"
+                  >
+                    <i class="fas fa-user-shield" style="margin-right: 4px"></i>
+                    Concierge Console
+                  </a>
+                </li>
+                {% endif %}
+
+                <li><a href="#">My Bookings</a></li>
+                <li>
+                  <a href="{% url 'logout' %}" style="color: #ff6b6b">Logout</a>
+                </li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+              </ul>
+            </div>
+
+            <div class="drawer-contact-container">
+              <h3>Contact us</h3>
+              <div class="drawer-social-row">
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-youtube"></i
+                ></a>
+                <a href="#" class="social-icon"
+                  ><i class="fab fa-whatsapp"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="header-center">
+        <div class="brand-wrapper">
+          <div class="logo">GARDEN<span>HOUSE</span></div>
+          <div class="tagline">...the pride of paradise...</div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <a href="tel:+254714386594" class="contact-badge-link">
+          <div class="contact-icon-box">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div class="contact-details-text">
+            <span class="label">Phone Number</span>
+            <span class="value">+254 714 386594</span>
+          </div>
+        </a>
+        <a
+          href="mailto:reservations@gardenguesthouse.com"
+          class="contact-badge-link"
+        >
+          <div class="contact-icon-box">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-details-text">
+            <span class="label">Email Address</span>
+            <span class="value">reservations@gardenguesthouse.com</span>
+          </div>
+        </a>
+      </div>
+    </header>
+
+    {% if messages %}
+    <div style="max-width: 1200px; margin: 20px auto; padding: 0 20px">
+      {% for message in messages %}
+      <div
+        style="
+          padding: 15px;
+          border-radius: 4px;
+          font-weight: 600;
+          text-align: center;
+          background: rgba(197, 168, 128, 0.15);
+          color: #c5a880;
+          border: 1px solid rgba(197, 168, 128, 0.3);
+        "
+      >
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <section class="hero">
+      <p>The Pride of Paradise</p>
+      <h1>Book a Luxury Getaway Stay at Our Premium Hilltop Cottages</h1>
+    </section>
+
+    <section class="booking-filter-wrapper">
+      <form action="{% url 'home' %}" method="GET" class="booking-filter-form">
+        <div class="filter-input-group">
+          <label for="checkin">Check-In</label>
+          <input
+            type="date"
+            id="checkin"
+            name="checkin"
+            value="{{ request.GET.checkin }}"
+            required
+          />
+        </div>
+
+        <div class="filter-input-group">
+          <label for="checkout">Check-Out</label>
+          <input
+            type="date"
+            id="checkout"
+            name="checkout"
+            value="{{ request.GET.checkout }}"
+            required
+          />
+        </div>
+
+        <div class="filter-input-group">
+          <label for="guests">Guests and Rooms</label>
+          <select id="guests" name="guests">
+            <option
+              value="1"
+              {%
+              if
+              request.GET.guests=""
+              ="1"
+              %}selected{%
+              endif
+              %}
+            >
+              1 Adult
+            </option>
+            <option
+              value="2"
+              {%
+              if
+              request.GET.guests=""
+              ="2"
+              or
+              not
+              request.GET.guests
+              %}selected{%
+              endif
+              %}
+            >
+              2 Adults
+            </option>
+            <option
+              value="3"
+              {%
+              if
+              request.GET.guests=""
+              ="3"
+              %}selected{%
+              endif
+              %}
+            >
+              3 Adults
+            </option>
+            <option
+              value="4"
+              {%
+              if
+              request.GET.guests=""
+              ="4"
+              %}selected{%
+              endif
+              %}
+            >
+              4 Adults
+            </option>
+            <option
+              value="5"
+              {%
+              if
+              request.GET.guests=""
+              ="5"
+              %}selected{%
+              endif
+              %}
+            >
+              Family Suite (5+ Only)
+            </option>
+          </select>
+        </div>
+
+        <button type="submit" class="filter-submit-btn">
+          Check Availability
+        </button>
+      </form>
+    </section>
+
+    <main class="catalog-container" id="accommodations">
+      <div class="catalog-header-flex">
+        <div>
+          <p class="sub-caption">Inspired Lodging</p>
+          <h2 class="main-title">Our Cottages & Suites</h2>
+        </div>
+        <div class="category-tabs">
+          <span class="tab-item active">All</span>
+          <span class="tab-item">Luxury</span>
+          <span class="tab-item">Family</span>
+          <span class="tab-item">Double-Bed</span>
+          <span class="tab-item">Relax</span>
+        </div>
+      </div>
+
+      <div class="rooms-grid">
+        {% for room in room_types %}
+        <div class="room-card-premium">
+          <div class="card-image-wrapper">
+            <img
+              src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop"
+              alt="{{ room.name }}"
+              class="bg-card-img"
+            />
+            <div class="card-overlay-content">
+              <p class="room-count-badge">
+                🛏️ {{ room.max_adults }} Max Guests
+              </p>
+              <h3>{{ room.name }}</h3>
+            </div>
+          </div>
+          <div class="card-action-bar">
+            <p class="premium-rate">
+              KES {{ room.base_price }} <span>/ night</span>
+            </p>
+            <a
+              href="{% url 'book_room' %}?room_id={{ room.id }}{% if request.GET.checkin %}&check_in={{ request.GET.checkin }}{% endif %}{% if request.GET.checkout %}&check_out={{ request.GET.checkout }}{% endif %}"
+              class="select-link-btn"
+              >Select Room →</a
+            >
+          </div>
+        </div>
+        {% empty %}
+        <p
+          style="text-align: center; color: #666; width: 100%; padding: 40px 0"
+        >
+          No premium cottages match your requested criteria. Try modifying your
+          filter values.
+        </p>
+        {% endfor %}
+      </div>
+    </main>
+
+    <section class="services-section">
+      <div class="services-container">
+        <div class="services-intro">
+          <h2>Services.</h2>
+          <p>
+            Garden Guest House is a great definition of tranquility due to its
+            wonderful location. Each amenity has its own characteristics and
+            personality, which helps set us apart from the competition and gives
+            our guests a unique experience every time they visit our resort
+            getaway.
+          </p>
+        </div>
+
+        <div class="services-grid-list">
+          <div class="service-item-box"><span>+</span> Rooms and Suites</div>
+          <div class="service-item-box">
+            <span>+</span> Conference facilities
+          </div>
+          <div class="service-item-box"><span>+</span> Leisure Activities</div>
+          <div class="service-item-box">
+            <span>+</span> Mobile Kitchen and Catering
+          </div>
+          <div class="service-item-box"><span>+</span> Restaurants</div>
+          <div class="service-item-box"><span>+</span> Swimming</div>
+          <div class="service-item-box"><span>+</span> Tour Services</div>
+          <div class="service-item-box"><span>+</span> Events</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feedback-section">
+      <div class="feedback-heading">
+        <h2>Client Feedback</h2>
+      </div>
+
+      <div class="feedback-grid">
+        <div class="feedback-card">
+          <div class="avatar-container">
+            <div class="avatar-placeholder">👤</div>
+            <div class="verified-badge">✓</div>
+          </div>
+          <h4>Brenda Wangui</h4>
+          <p class="feedback-text">
+            "This is a great place to relax with the family on a nice sunny
+            weekend. The pool is kid friendly with helpful staff."
+          </p>
+        </div>
+
+        <div class="feedback-card">
+          <div class="avatar-container">
+            <div class="avatar-placeholder">👤</div>
+            <div class="verified-badge">✓</div>
+          </div>
+          <h4>Rebecca Biyogo</h4>
+          <p class="feedback-text">
+            "This hotel getaway was amazing. A truly 5 star experience! The food
+            was amazing every morning. The hosts are incredibly welcoming."
+          </p>
+        </div>
+
+        <div class="feedback-card">
+          <div class="avatar-container">
+            <div class="avatar-placeholder">👤</div>
+            <div class="verified-badge">✓</div>
+          </div>
+          <h4>Sofia Amoni</h4>
+          <p class="feedback-text">
+            "The place is very nice, serene, and perfect for getting work done
+            or unwinding away from city noise. Highly recommend!"
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <script src="{% static 'bookings/js/script.js' %}"></script>
+  </body>
+</html>

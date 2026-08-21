@@ -1,0 +1,176 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secure Luxury Booking | Garden Guest House</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background: #0d0d0d;
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+      .booking-card {
+        background: #141414;
+        border: 1px solid rgba(197, 168, 128, 0.15);
+        border-radius: 12px;
+        max-width: 550px;
+        width: 100%;
+        padding: 40px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+      h1 {
+        font-family: "Playfair Display", serif;
+        color: #fff;
+        font-size: 2rem;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      h1 span {
+        color: #c5a880;
+      }
+      .room-summary {
+        text-align: center;
+        color: #a6a6a6;
+        font-size: 0.95rem;
+        margin-bottom: 30px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding-bottom: 15px;
+        line-height: 1.6;
+      }
+      .room-price {
+        color: #c5a880;
+        font-weight: 700;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        color: #c5a880;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+      }
+      input {
+        width: 100%;
+        background: #1f1f1f;
+        color: #fff;
+        border: 1px solid rgba(197, 168, 128, 0.25);
+        padding: 12px 15px;
+        border-radius: 6px;
+        font-family: inherit;
+        font-size: 0.95rem;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      input:focus {
+        border-color: #c5a880;
+      }
+
+      .submit-btn {
+        width: 100%;
+        background: #c5a880;
+        color: #0d0d0d;
+        border: none;
+        padding: 14px;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background 0.2s;
+      }
+      .submit-btn:hover {
+        background: #b3956b;
+      }
+      .cancel-link {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #ff6b6b;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="booking-card">
+      <h1>Secure Your <span>Stay</span></h1>
+      <div class="room-summary">
+        You are reserving: <strong>{{ room.name }}</strong> <br />
+        Rate Configuration:
+        <span class="room-price">KES {{ room.base_price }} / Night</span>
+      </div>
+
+      <form method="POST" action="{% url 'book_room' %}">
+        {% csrf_token %}
+        <input type="hidden" name="room_id" value="{{ room.id }}" />
+
+        <div class="form-group">
+          <label for="guest_name">Full Guest Name</label>
+          <input
+            type="text"
+            id="guest_name"
+            name="guest_name"
+            placeholder="e.g. Joshua Mokua"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="guest_phone">M-Pesa Phone Number</label>
+          <input
+            type="tel"
+            id="guest_phone"
+            name="guest_phone"
+            placeholder="e.g. 07XXXXXXXX"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="check_in">Check-In Date</label>
+          <input type="date" id="check_in" name="check_in" required />
+        </div>
+
+        <div class="form-group">
+          <label for="check_out">Check-Out Date</label>
+          <input type="date" id="check_out" name="check_out" required />
+        </div>
+
+        <button type="submit" class="submit-btn">
+          Confirm & Calculate Cost
+        </button>
+        <a href="{% url 'home' %}" class="cancel-link">Abandon Selection</a>
+      </form>
+    </div>
+  </body>
+</html>

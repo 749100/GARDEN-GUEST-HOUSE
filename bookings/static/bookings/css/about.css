@@ -1,0 +1,297 @@
+/* =========================================================================
+   CORE THEME VARIANT INHERITANCE
+   ========================================================================= */
+:root {
+    --primary: #c5a880;
+    --primary-hover: #b3956d;
+    --accent-clay: #b08257;
+    --dark-bg: #0b0e14;
+    --surface: #111622;
+    --text-light: #ffffff;
+    --text-muted: #8a99ad;
+    --border-color: rgba(197, 168, 128, 0.15);
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* =========================================================================
+   ABOUT HERO BANNER
+   ========================================================================= */
+.about-hero-banner {
+    padding: 160px 20px 100px 20px;
+    text-align: center;
+    background: linear-gradient(rgba(11, 14, 20, 0.75), rgba(11, 14, 20, 0.95)),
+        url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.hero-subtext {
+    font-family: var(--font-serif);
+    color: var(--primary);
+    font-size: 1.2rem;
+    font-style: italic;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.hero-main-title {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+/* =========================================================================
+   STORY & METRICS LAYOUT
+   ========================================================================= */
+.about-premium-section {
+    padding: 120px 20px;
+    position: relative;
+}
+
+.about-premium-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.section-sub-caption {
+    color: var(--primary);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.section-main-title {
+    font-family: var(--font-serif);
+    font-size: 2.6rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 25px;
+}
+
+.about-body-text {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 22px;
+}
+
+/* Incremental Counters Stack */
+.about-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.metric-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.metric-number {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.metric-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    margin-top: 5px;
+}
+
+/* =========================================================================
+   ASYMMETRIC GRAPHIC BOXES LAYER
+   ========================================================================= */
+.about-visual-showcase {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 520px;
+}
+
+.main-image-frame {
+    width: 80%;
+    height: 400px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.accent-image-frame {
+    width: 60%;
+    height: 280px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 3;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 4px solid var(--surface);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.about-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.about-visual-showcase:hover .about-img {
+    transform: scale(1.05);
+}
+
+.geometric-backdrop-accent {
+    position: absolute;
+    top: 40px;
+    left: -30px;
+    width: 85%;
+    height: 380px;
+    border: 1px solid var(--border-color);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* =========================================================================
+   3. VALUE STATEMENTS GRID
+   ========================================================================= */
+.about-values-section {
+    background-color: var(--surface);
+    padding: 100px 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.values-container-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.values-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.values-flex-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.value-card-box {
+    background-color: rgba(11, 14, 20, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 40px 30px;
+    border-radius: 4px;
+    text-align: center;
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.value-card-box:hover {
+    transform: translateY(-8px);
+    border-color: var(--border-color);
+}
+
+.card-icon {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.value-card-box h3 {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.value-card-box p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* =========================================================================
+   CROSS CONTAINER MEDIA QUERIES (950px MAX BREAKPOINT)
+   ========================================================================= */
+@media (max-width: 950px) {
+    .about-hero-banner {
+        padding: 120px 20px 70px 20px;
+    }
+
+    .hero-main-title {
+        font-size: 2.6rem;
+    }
+
+    .about-premium-section {
+        padding: 60px 20px;
+    }
+
+    .about-premium-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .section-main-title {
+        font-size: 2.1rem;
+    }
+
+    .about-metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .about-visual-showcase {
+        height: 420px;
+    }
+
+    .main-image-frame {
+        width: 85%;
+        height: 320px;
+    }
+
+    .accent-image-frame {
+        width: 55%;
+        height: 200px;
+    }
+
+    .geometric-backdrop-accent {
+        display: none;
+    }
+
+    .values-flex-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
