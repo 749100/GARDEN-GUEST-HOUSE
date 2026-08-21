@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-u9!$h!_i4vpuzctp3u)38h3m#qs%0+doczes6)9m1w1p3(3@1q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.12.111.191', '127.0.0.1', 'localhost'] 
+ALLOWED_HOSTS = ['*'] 
 # ^ Replace '192.168.1.15' with your exact IPv4 address from Step 1
 
 
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
